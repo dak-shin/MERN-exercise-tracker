@@ -7,7 +7,7 @@ const NavbarComp = () => {
     return (
 
     <div className="navbar">
-        <h3>MERN Tracker</h3>
+        <h3>MERN TRACKER</h3>
         <nav className="main-navbar">
             <div className="nav-link">
                 <Link to="/">Exercise List</Link>
