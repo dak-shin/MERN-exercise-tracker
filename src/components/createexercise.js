@@ -26,26 +26,30 @@ const CreateExercise = () => {
 
     }
 
+    const createUserList = (userArr) => {
+
+        const temp = userArr.map(user => {return user.username});
+        setUsers(temp);
+        console.log(temp);
+    };
+
     useEffect(() => {
         axios.get('http://localhost:5000/users')
         .then((res)=>{
             
             if(res.data.length > 0 ){
-                const temp = res.data.map(user => {
-                    return user.username
-                })
-                setUsers(temp);
-                // console.log(temp);
+                console.log('Inside useEffect');
+                createUserList(res.data);
+                
             }
             else{
                 console.log('No Users');
             }
         })
-        console.log(users);
         return () => {
 
         }
-    }, []);
+    },[]);
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -79,6 +83,7 @@ const CreateExercise = () => {
                     onChange={handleChange} /> */}
                     <select name="username" id="username" value={exercise.username} onChange={handleChange} >
                         {users.map(user =>{
+                            // console.log(user);
                             return (
                                 <option value={user}>{user}</option>
                             );
