@@ -1,5 +1,7 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import axios from 'axios';
+
 const CreateExercise = () => {
     
     const [exercise, setExercise] = useState({
@@ -9,24 +11,58 @@ const CreateExercise = () => {
         date: ''
     });
 
+    const [users, setUsers] = useState([]);
+
     const handleChange = (event) => {
 
         const name = event.target.name;
-        const value = event.target.value;
+        var value = event.target.value;
+
+        if(name === 'date'){
+            value = value.toString()
+        }
 
         setExercise({...exercise, [name]:value});
 
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:5000/users')
+        .then((res)=>{
+            
+            if(res.data.length > 0 ){
+                const temp = res.data.map(user => {
+                    return user.username
+                })
+                setUsers(temp);
+                // console.log(temp);
+            }
+            else{
+                console.log('No Users');
+            }
+        })
+        console.log(users);
+        return () => {
+
+        }
+    }, []);
+
     const handleSubmit = (event) =>{
         event.preventDefault();
         console.log(exercise);
+        axios.post('http://localhost:5000/exercises/add',exercise)
+        .then((res) => {
+            console.log(res.data);
+            
+        })
+
         setExercise({
             username:'',
             description:'',
             duration:0,
             date: new Date().getDate().toString()
         });
+
     }
 
     return(
@@ -35,12 +71,19 @@ const CreateExercise = () => {
             <form action="/">
                 <div className="form-group">
                     <label htmlFor="username">Username : </label>
-                    <input 
+                    {/* <input 
                     type="text" 
                     name="username"
                     id="username"
                     value={exercise.username}
-                    onChange={handleChange} />
+                    onChange={handleChange} /> */}
+                    <select name="username" id="username" value={exercise.username} onChange={handleChange} >
+                        {users.map(user =>{
+                            return (
+                                <option value={user}>{user}</option>
+                            );
+                        })}
+                    </select>
                 </div>
 
                 <br/>
@@ -83,6 +126,9 @@ const CreateExercise = () => {
                 <button type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
+
+                <br/>
+                
             </form>
         </div>
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import {useState} from 'react'
+import axios from 'axios';
+
 const CreateUser = () => {
     
     const [user, setUser] = useState({
@@ -16,11 +18,16 @@ const CreateUser = () => {
     }
 
     const handleSubmit = (event) =>{
+       
         event.preventDefault();
-        console.log(user);
-        setUser({
-            username:''
-        });
+        // console.log(user);
+        axios.post('http://localhost:5000/users/add',user)
+        .then((res) => {
+            console.log(res.data);
+            
+        })
+
+        setUser({username:''});
     }
 
     return(
@@ -41,6 +48,7 @@ const CreateUser = () => {
                 <button type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
+                <br/>
             </form>
         </div>
 

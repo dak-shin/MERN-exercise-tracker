@@ -94,10 +94,11 @@ button :hover {
   align-items: center;
 }
 
-input {
+input,
+select {
   /* float: right; */
   width: 25rem;
-  height: 2rem;
+  height: 2.2rem;
   margin: 0.25rem;
 }
 
