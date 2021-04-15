@@ -18,9 +18,7 @@ const CreateExercise = () => {
         const name = event.target.name;
         var value = event.target.value;
 
-        if(name === 'date'){
-            value = value.toString()
-        }
+        
 
         setExercise({...exercise, [name]:value});
 
@@ -81,7 +79,8 @@ const CreateExercise = () => {
                     id="username"
                     value={exercise.username}
                     onChange={handleChange} /> */}
-                    <select name="username" id="username" value={exercise.username} onChange={handleChange} >
+                    <select name="username" id="username" value={exercise.username} onChange={handleChange} autoComplete='off' >
+                        {/* <option value={NaN}>Select user</option> */}
                         {users.map(user =>{
                             // console.log(user);
                             return (

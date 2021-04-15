@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const ExerciseList = () => {
 
@@ -45,7 +46,14 @@ const ExerciseList = () => {
                 <td>{exerciseobj.duration}</td>
                 <td>{exerciseobj.date}</td>
                 <td>
+                    <button type="button" >
+                        <Link to={'/edit/'+exerciseobj._id} style={{textDecoration:'none',color: 'white', backgroundColor:'rgb(80, 112, 255)'}}>
+                            Edit
+                        </Link>
+                    </button>
+                    
                     <button type="button"  onClick={() => {deleteExercise(exerciseobj._id)}}> Delete</button>
+                    
                 </td>
             </tr>
         );

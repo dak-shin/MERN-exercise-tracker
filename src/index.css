@@ -75,7 +75,17 @@ button {
   padding: 0.75rem;
   width: 7rem;
   cursor: pointer;
+  margin: 0.25rem;
 }
+
+/* .link-in-btn {
+  text-decoration: none;
+  color: white;
+}
+
+.link-in-btn :hover {
+  background-color: rgb(80, 112, 255);
+} */
 
 button :hover {
   background-color: black;
@@ -117,7 +127,7 @@ label {
 
 table {
   padding: 0.5rem 0.25rem;
-  min-width: 50rem;
+  min-width: 90vw;
   font-size: larger;
   border-radius: var(--border-radius-small);
   /* border: 2px solid black; */
