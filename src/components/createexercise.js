@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import axios from 'axios';
+import {MAIN_URL} from './url.js';
 
 const CreateExercise = () => {
     
@@ -32,7 +33,7 @@ const CreateExercise = () => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users')
+        axios.get(`${MAIN_URL}/users`)
         .then((res)=>{
             
             if(res.data.length > 0 ){
@@ -52,7 +53,7 @@ const CreateExercise = () => {
     const handleSubmit = (event) =>{
         event.preventDefault();
         console.log(exercise);
-        axios.post('http://localhost:5000/exercises/add',exercise)
+        axios.post(`${MAIN_URL}/exercises/add`,exercise)
         .then((res) => {
             console.log(res.data);
             

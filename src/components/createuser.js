@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react'
 import axios from 'axios';
+import {MAIN_URL} from './url.js'
 
 const CreateUser = () => {
     
@@ -21,7 +22,7 @@ const CreateUser = () => {
        
         event.preventDefault();
         // console.log(user);
-        axios.post('http://localhost:5000/users/add',user)
+        axios.post(`${MAIN_URL}/users/add`,user)
         .then((res) => {
             console.log(res.data);
             

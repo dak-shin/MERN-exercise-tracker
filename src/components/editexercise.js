@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
+import {MAIN_URL} from './url.js';
 
 const EditExercise = () => {
     const obj = useParams();
@@ -10,7 +11,7 @@ const EditExercise = () => {
 
     useEffect(() => {
         
-        axios.get(`http://localhost:5000/exercises/${obj.id}`)
+        axios.get(`${MAIN_URL}/exercises/${obj.id}`)
         .then((res)=>{
             if(res.data)
             // console.log(res.data);
@@ -41,7 +42,7 @@ const EditExercise = () => {
     };
 
     const handleSubmit = () => {
-        axios.post(`http://localhost:5000/exercises/update/${obj.id}`, newEx)
+        axios.post(`${MAIN_URL}/exercises/update/${obj.id}`, newEx)
         .then((res) => {
             console.log(res.data);
         })

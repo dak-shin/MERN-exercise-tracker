@@ -2,13 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {MAIN_URL} from './url.js';
 
 const ExerciseList = () => {
 
     const [newExercises, setnewExercise] = useState([])
     useEffect(() => {
         
-        axios.get('http://localhost:5000/exercises')
+        axios.get(`${MAIN_URL}/exercises`)
         .then((res)=>{
             
             if(res.data.length > 0 ){
@@ -31,7 +32,7 @@ const ExerciseList = () => {
     
 
     const deleteExercise = (id) => {
-        axios.delete(`http://localhost:5000/exercises/${id}`)
+        axios.delete(`${MAIN_URL}/exercises/${id}`)
         .then(res =>{console.log(res.data)});
         window.location.reload();
         
@@ -68,7 +69,7 @@ const ExerciseList = () => {
                     <th>Description</th>
                     <th>Duration</th>
                     <th>Date</th>
-                    <th>Delete</th>
+                    <th>Actions</th>
                 </tr>
                 {newExercises.map(ex => {return renderExerciseTableRow(ex)})}
             </table>
